@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LartaDemo", "LartaDemo\LartaDemo.csproj", "{AD20A7E0-D44F-485C-9101-88E09B871ECF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD20A7E0-D44F-485C-9101-88E09B871ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD20A7E0-D44F-485C-9101-88E09B871ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD20A7E0-D44F-485C-9101-88E09B871ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD20A7E0-D44F-485C-9101-88E09B871ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9605FBAB-4DC6-47B2-A382-2308F2D68F17}
+	EndGlobalSection
+EndGlobal
