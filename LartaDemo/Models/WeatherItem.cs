@@ -63,7 +63,7 @@ namespace LartaDemo
             Difference = MxT - MnT;
         }
 
-        public override string displayText()
+        public override string DisplayText()
         {
             return $"Day #{Name} had the smallest difference of {Difference} degrees between max & min temperature";
         }

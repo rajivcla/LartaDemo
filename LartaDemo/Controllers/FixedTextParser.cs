@@ -19,10 +19,6 @@ namespace LartaDemo
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
-                
-                
-
-
                 if (i == headerLine)
                 {
                     foundHeader = true;

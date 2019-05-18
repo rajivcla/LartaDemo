@@ -6,6 +6,6 @@
         public string Name { get; set; }
         public int Difference { get; set; }
 
-        public abstract string displayText();
+        public abstract string DisplayText();
     }
 }

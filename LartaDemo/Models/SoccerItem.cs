@@ -35,7 +35,7 @@ namespace LartaDemo
             Difference = Math.Abs(F - A);
         }
 
-        public override string displayText()
+        public override string DisplayText()
         {
             return $"The {Name} soccer club had the smallest difference of {Difference} goals scored for vs against";
         }
