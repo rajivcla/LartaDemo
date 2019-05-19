@@ -12,6 +12,11 @@ namespace LartaDemo
         public static List<string[]> ReadFile(string filename)
         {
             string[] lines = File.ReadAllLines(filename);
+            return ParseLines(lines);
+        }
+
+        private static List<string[]> ParseLines(string[] lines)
+        {
             List<string[]> values = new List<string[]>();
             int headerLine = -1;
             List<int[]> headerLocations = null;
@@ -22,16 +27,16 @@ namespace LartaDemo
                 if (i == headerLine)
                 {
                     foundHeader = true;
-                    headerLocations = parseHeader(line);
+                    headerLocations = ParseHeader(line);
                 }
                 else if (foundHeader)
                 {
-                    if (hasNumericFirst(line))
-                        values.Add(parseLine(line, headerLocations));
+                    if (HasNumericFirst(line))
+                        values.Add(ParseLine(line, headerLocations));
                 }
                 else
                 {
-                    if (hasNumericFirst(line))  //only lines w/ numbers first are relevant rows
+                    if (HasNumericFirst(line))  //only lines w/ numbers first are relevant rows
                     {
                         i--; //search rows above to find header
                         while (i > 0 && lines[i].Length == 0)
@@ -47,11 +52,10 @@ namespace LartaDemo
 
 
             }
-
             return values;
         }
 
-        private static bool hasNumericFirst(string line)
+        private static bool HasNumericFirst(string line)
         {
             // only lines starting w/ numbers are valid rows
             foreach (var c in line)
@@ -64,7 +68,7 @@ namespace LartaDemo
             return false;
         }
 
-        private static string[] parseLine(string line, List<int[]> headerLocations)
+        private static string[] ParseLine(string line, List<int[]> headerLocations)
         {
             string[] s = new string[headerLocations.Count];
             // spaces define the end of each formatted text column 
@@ -89,7 +93,7 @@ namespace LartaDemo
             return s;
         }
 
-        private static List<int[]> parseHeader(string h)
+        private static List<int[]> ParseHeader(string h)
         {
             // save off locations of header columns using start and end character 
             List<int[]> headerLocations = new List<int[]>();

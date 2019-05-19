@@ -1,22 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LartaDemo
 {
-    class DisplayView<T> where T : DifferenceItem
+    public abstract class DisplayView<T> where T : DifferenceItem
     {
-        DifferenceController<T> dC;
-        public DisplayView(string filename)
+        public DisplayView(){}
+
+        public void OutputText(List<T> result)
         {
-            // Route to Controller
-            dC = new DifferenceController<T>(filename);
-            outputText();
+            foreach(var d in result)
+                Console.WriteLine(DisplayText(d.Name,d.Difference));
         }
 
-        public void outputText()
-        {
-            foreach(var d in dC.GetResult())
-                Console.WriteLine(d.DisplayText());
-        }
+        public abstract string DisplayText(string name, int difference);
+
+        //public string DisplayText(string name, int difference)
+        //{
+        //    return $"The {name} soccer club had the smallest difference of {difference} goals scored for vs against";
+        //}
+
+
 
     }
 }

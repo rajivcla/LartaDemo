@@ -6,31 +6,36 @@ namespace LartaDemo
 {
     public class DifferenceController<T> where T : DifferenceItem
     {
-        private readonly string filename;
-        private List<DifferenceItem> result;
-        DifferenceItemContext<T> context;
-
-        public DifferenceController(string filename) 
+        private List<T> result;
+        IDifferenceItemContext<T> context;
+        DisplayView<T> view;
+        public DifferenceController(DisplayView<T> view, IDifferenceItemContext<T> context) 
         {
-            this.filename = filename;
-            context = new DifferenceItemContext<T>(filename);
+            this.view = view;
+            this.context = context;
             FindMin(); // by default find min and load that
         }
 
-        private void FindMin()
+        public void FindMin()
         {
-            var result = context.DifferenceItems.Where(n => n.Difference == context.DifferenceItems.Min(d => d.Difference));
-            this.result = result.ToList();
+            result = context.DifferenceItems.Where(n => n.Difference == context.DifferenceItems.Min(d => d.Difference)).ToList();
+            UpdateView(result);
         }
 
         public void FindLessThan(int number)
         {
             result = context.DifferenceItems.Where(n => n.Difference <= number).ToList();
+            UpdateView(result);
         }
 
-        public List<DifferenceItem> GetResult()
+        public void UpdateView(List<T> result)
         {
-            return result;
+            view.OutputText(result);
+        }
+
+        public void Add(T item)
+        {
+            context.Add(item);
         }
     }
 }
