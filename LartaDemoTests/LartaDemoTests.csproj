@@ -56,9 +56,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Context\DifferenceItemContextTests.cs" />
     <Compile Include="Controllers\DifferenceControllerTests.cs" />
+    <Compile Include="Controllers\DifferenceItemContextMock.cs" />
     <Compile Include="Controllers\FixedWidthTextParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\SoccerViewTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

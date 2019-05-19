@@ -37,5 +37,10 @@ namespace LartaDemo
         {
             context.Add(item);
         }
+
+        public List<T> getResult()
+        {
+            return result;
+        }
     }
 }

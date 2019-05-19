@@ -14,13 +14,5 @@ namespace LartaDemo
         }
 
         public abstract string DisplayText(string name, int difference);
-
-        //public string DisplayText(string name, int difference)
-        //{
-        //    return $"The {name} soccer club had the smallest difference of {difference} goals scored for vs against";
-        //}
-
-
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LartaDemo
 {
-    class SoccerView<T> : DisplayView<T> where T : SoccerItem
+    public class SoccerView<T> : DisplayView<T> where T : SoccerItem
     {
         public SoccerView() { }
 

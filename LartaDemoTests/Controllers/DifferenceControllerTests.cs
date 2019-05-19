@@ -5,53 +5,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LartaDemoTests.Tests;
 
 namespace LartaDemo.Tests
 {
     [TestClass()]
     public class DifferenceControllerTests
     {
-       DifferenceController<SoccerItem> dC;
-       //[TestMethod()]
-       // public void DifferenceControllerTest()
-       // {
-       //     SetupTest();
-       //     List<DifferenceItem> di = dC.UpdateView();
-       //     Assert.IsTrue(di.Count > 0);
-       //     Assert.IsTrue(di[0].Difference == 1);
-       // }
+       public DifferenceController<SoccerItem> dC;
+       [TestMethod()]
+        public void DifferenceControllerTest()
+        {
+            SetupTest();
+            Assert.IsTrue(dC != null);
+        }
 
-       // [TestMethod()]
-       // public void getMinTest()
-       // {
-       //     SetupTest();
-       //     List<DifferenceItem> di = dC.UpdateView();
+        public void SetupTest()
+        {
 
-       //     SoccerItem fakeMin = new SoccerItem();
-       //     fakeMin.Name = "FakeTeam";
-       //     fakeMin.Difference = di[0].Difference;
-       //     dC.Add(fakeMin);
+            DifferenceItemContextMock<SoccerItem> context = new DifferenceItemContextMock<SoccerItem>();
+            context.Add(new SoccerItem() { Name = "team1", Difference = 1 });
+            context.Add(new SoccerItem() { Name = "team2", Difference = 2 });
+            context.Add(new SoccerItem() { Name = "team3", Difference = 3 });
+            context.Add(new SoccerItem() { Name = "team4", Difference = 1 });
+            dC = new DifferenceController<SoccerItem>(new SoccerView<SoccerItem>(), context);
+        }
 
-       //     dC.FindMin();
-       //     di = dC.UpdateView();
-       //     Assert.IsTrue(di.Count == 2);
-       //     Assert.IsTrue(di[0].Difference == 1);
-       // }
+        [TestMethod()]
+        public void FindMinTest()
+        {
+            SetupTest();
+            List<SoccerItem> di = dC.getResult();
+            Assert.IsTrue(di.Count == 2);
+            Assert.IsTrue(di[0].Difference == 1);
+        }
 
-       // [TestMethod()]
-       // public void FindLessThanTest()
-       // {
-       //     SetupTest();
-       //     dC.FindLessThan(8);
-       //     List<DifferenceItem> di = dC.UpdateView();
-       //     Assert.IsTrue(di.Count > 0);
-       //     Assert.IsTrue(di[4].Difference == 8);
+        [TestMethod()]
+        public void FindLessThanTest()
+        {
+            SetupTest();
+            dC.FindLessThan(2);
+            List<SoccerItem> di = dC.getResult();
+            Assert.IsTrue(di.Count == 3);
+            Assert.IsTrue(di[0].Difference == 1);
+        }
 
-       // }
-
-       // public void SetupTest()
-       // {
-       //     dC = new DifferenceController<SoccerItem>(new DifferenceItemContext<SoccerItem>("soccer"));
-       // }
+        
+        [TestMethod()]
+        public void getResultTest()
+        {
+            SetupTest();
+            List<SoccerItem> di = dC.getResult();
+            Assert.IsTrue(di.Count == 2);
+        }
     }
 }
