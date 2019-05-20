@@ -64,6 +64,5 @@ namespace LartaDemo
         }
 
         public WeatherItem() { }
-
     }
 }

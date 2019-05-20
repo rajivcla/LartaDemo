@@ -49,8 +49,6 @@ namespace LartaDemo
                         i--;// parse headerline on first run.
                     }
                 }
-
-
             }
             return values;
         }
@@ -126,6 +124,5 @@ namespace LartaDemo
             headerLocations.Add(location);
             return headerLocations;
         }
-
     }
 }

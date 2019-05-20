@@ -14,7 +14,5 @@ namespace LartaDemo
         {
             return $"Day #{name} had the smallest difference of {difference} degrees between max & min temperature";
         }
-
     }
-    
 }

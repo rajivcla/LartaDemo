@@ -14,7 +14,5 @@ namespace LartaDemo
         {
             return $"The {name} soccer club had the smallest difference of {difference} goals scored for vs against";
         }
-
     }
-   
 }

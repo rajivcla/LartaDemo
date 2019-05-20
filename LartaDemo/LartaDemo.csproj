@@ -46,7 +46,7 @@
     <Compile Include="Context\DifferenceItemContext.cs" />
     <Compile Include="Context\IDifferenceItemContext.cs" />
     <Compile Include="Controllers\DifferenceFactory.cs" />
-    <Compile Include="Controllers\FixedTextParser.cs" />
+    <Compile Include="Context\FixedTextParser.cs" />
     <Compile Include="Controllers\DifferenceController.cs" />
     <Compile Include="Models\DifferenceItem.cs" />
     <Compile Include="Models\SoccerItem.cs" />

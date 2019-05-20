@@ -6,8 +6,7 @@ namespace LartaDemo
 {
     public class DifferenceItemContext<T> : IDifferenceItemContext<T> where T : DifferenceItem
     {
-        public List<T> DifferenceItems { get; set; } //implement an interface here
-        //mock out the DifferentItemContext, this loads Difference item w/ your values to test.
+        public List<T> DifferenceItems { get; set; } 
 
         public DifferenceItemContext(string filename)
         {
@@ -21,7 +20,6 @@ namespace LartaDemo
             {
                 DifferenceItems.Add(DifferenceFactory.GetInstance<T>(s));
             }
-            
         }
 
         public void Add(T item)
@@ -33,7 +31,5 @@ namespace LartaDemo
         {
             DifferenceItems.Remove(item);
         }
-
-
     }
 }
