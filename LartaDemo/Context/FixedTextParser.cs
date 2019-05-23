@@ -20,36 +20,39 @@ namespace LartaDemo
             List<string[]> values = new List<string[]>();
             int headerLine = -1;
             List<int[]> headerLocations = null;
-            bool foundHeader = false;
+            int startLine = -1;
+            // find start of data
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
-                if (i == headerLine)
                 {
-                    foundHeader = true;
-                    headerLocations = ParseHeader(line);
-                }
-                else if (foundHeader)
-                {
-                    if (HasNumericFirst(line))
-                        values.Add(ParseLine(line, headerLocations));
-                }
-                else
-                {
-                    if (HasNumericFirst(line))  //only lines w/ numbers first are relevant rows
+                    if (HasNumericFirst(line))  // only lines w/ numbers first are relevant rows
                     {
-                        i--; //search rows above to find header
-                        while (i > 0 && lines[i].Length == 0)
-                        {
-                            i--;//keep searching if there are empty lines
-                        }
-                        if (i == 0)
-                            throw new InvalidDataException("InvalidDataException no header found");
-                        headerLine = i;
-                        i--;// parse headerline on first run.
+                        startLine = i;
+                        break;        
                     }
                 }
             }
+
+            // search rows above to find header
+            headerLine = startLine - 1; 
+            while (headerLine > 0 && lines[headerLine].Length == 0)
+            {
+                headerLine--;//keep searching if there are empty lines
+            }
+            if (headerLine == 0)// always has <pre> tag
+                throw new InvalidDataException("InvalidDataException no header found");
+            else
+                headerLocations = ParseHeader(lines[headerLine]);
+
+            // parse lines based on headerline text locations
+            for (int i = startLine; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                if (HasNumericFirst(line))
+                    values.Add(ParseLine(line, headerLocations));
+            }
+
             return values;
         }
 
