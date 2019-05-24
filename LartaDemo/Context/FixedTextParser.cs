@@ -18,33 +18,37 @@ namespace LartaDemo
         private static List<string[]> ParseLines(string[] lines)
         {
             List<string[]> values = new List<string[]>();
-            int headerLine = -1;
+            int headerLine = 0;
             List<int[]> headerLocations = null;
             int startLine = -1;
+            bool foundHeader = false;
+            
             // find start of data
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
+                if (HasNumericFirst(line))  // only lines w/ numbers first are relevant rows
                 {
-                    if (HasNumericFirst(line))  // only lines w/ numbers first are relevant rows
-                    {
-                        startLine = i;
-                        break;        
-                    }
+                    startLine = i;
+                    break;
+                }else if(lines[i].Length != 0)
+                {
+                    headerLine = i;
+                    foundHeader = true;
                 }
+
             }
 
-            // search rows above to find header
-            headerLine = startLine - 1; 
-            while (headerLine > 0 && lines[headerLine].Length == 0)
+            // parse header
+            if (foundHeader)
             {
-                headerLine--;//keep searching if there are empty lines
-            }
-            if (headerLine == 0)// always has <pre> tag
-                throw new InvalidDataException("InvalidDataException no header found");
-            else
                 headerLocations = ParseHeader(lines[headerLine]);
-
+            }
+            else
+            {
+                throw new InvalidDataException("InvalidDataException no header found");
+            }
+            
             // parse lines based on headerline text locations
             for (int i = startLine; i < lines.Length; i++)
             {
