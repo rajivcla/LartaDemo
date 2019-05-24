@@ -31,12 +31,12 @@ namespace LartaDemo
                 {
                     startLine = i;
                     break;
-                }else if(lines[i].Length != 0)
+                }
+                else if(lines[i].Length != 0)
                 {
                     headerLine = i;
                     foundHeader = true;
                 }
-
             }
 
             // parse header
@@ -56,7 +56,6 @@ namespace LartaDemo
                 if (HasNumericFirst(line))
                     values.Add(ParseLine(line, headerLocations));
             }
-
             return values;
         }
 
